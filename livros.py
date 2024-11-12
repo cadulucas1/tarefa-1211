@@ -1,11 +1,23 @@
-class livros:
-    def __init__(self,titulo,autor, genero, cod_livro ):
+class Livros():
+    def __init__(self, titulo, autor, genero, cod_livro) -> None:
         self.titulo = titulo
         self.autor = autor
         self.genero = genero
-        self.status= "disponivel"
         self.cod_livro = cod_livro
+ 
+        self.status = "Disponivel"
         self.usuario = None
-
-    def create(self):
-        return f'insert into livro(título, autor, genero, status, código) values("{self.titulo}","{self.autor},"'        
+ 
+    
+    def EmprestarLivro(self, usuario):
+        if self.status != "Disponivel":
+            return 
+        self.usuario = usuario
+        self.status = 'Emprestado'
+ 
+ 
+    def DevolverLivro(self):
+        if self.status != "Emprestado":
+            return 'Não pode ser devolvido!!'
+        self.usuario = None
+        self.status = "Disponivel"
